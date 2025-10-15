@@ -33,24 +33,24 @@ export const FEATURES = [
 export const PRICING = [
   {
     name: "Starter",
-    price: "$49/mo",
+    price: "$15",
+    unit: "per month",
     highlight: false,
     blurb: "For trials and small plots",
     features: [
       "1 sensor kit",
       "Live moisture & temp",
-      "Email support",
       "Basic analytics",
     ],
   },
   {
     name: "Grower",
-    price: "$149/mo",
+    price: "$13",
+    unit: "per month per sensor",
     highlight: true,
     blurb: "Best for mid-size farms",
     features: [
-      "3 sensor kits",
-      "Full soil metrics",
+      "Live moisture & temp",
       "Irrigation guidance",
       "Priority support",
     ],
@@ -58,20 +58,18 @@ export const PRICING = [
   {
     name: "Enterprise",
     price: "Custom",
+    unit: "",
     highlight: false,
     blurb: "Large farms & agribusiness",
     features: [
-      "10+ sensor kits",
       "Fleet management",
       "API & integrations",
-      "On-site onboarding",
     ],
   },
 ];
 
 export const CONTACT = {
-  email: "hello@aradina.solutions",
-  phone: "+20 000 000 0000",
+  email: "ziad@aradina.solutions",
+  phone: "+20 109 555 6608",
   address: "Cairo, Egypt",
-  whatsapp: "https://wa.me/200000000000", // replace with your WhatsApp number link
 };

@@ -21,6 +21,9 @@ const PricingCard = ({ plan }) => (
     <div className="mt-3 text-3xl font-extrabold text-neutral-900">
       {plan.price}
     </div>
+    <div className="text-sm text-neutral-500">
+      {plan.unit}
+    </div>
     <ul className="mt-4 space-y-2 text-sm">
       {plan.features.map((feature) => (
         <li key={feature} className="flex items-start gap-2 text-neutral-700">
