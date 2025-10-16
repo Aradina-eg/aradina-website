@@ -1,69 +1,81 @@
 export const SITE = {
   name: "aradina",
-  tagline: "Smart agriculture made simple.",
+  tagline: "Smart irrigation made simple.",
   subTagline:
     "Sensors, insights, and automation to save water, boost yield, and cut costs.",
   ctaPrimary: "Get a quote",
-  ctaSecondary: "View pricing",
 };
 
 export const FEATURES = [
   {
-    title: "Soil & climate sensing",
+    title: "Soil Sensing",
     body:
       "Solar-powered field sensors track moisture, salinity, temperature and more.",
+    icon: "soil",
   },
   {
-    title: "Real-time dashboard",
+    title: "Real-time Insights",
     body:
       "See live field conditions, set alerts, and track trends over time on web & mobile.",
+    icon: "insights",
   },
   {
-    title: "Irrigation guidance",
+    title: "Fleet Automation",
     body:
-      "AI-driven recommendations tell you when and how much to irrigate.",
+      "Remotely schedule pumps, valves, and field hardware from one dashboard.",
+    icon: "automation",
   },
   {
     title: "Easy deployment",
     body:
       "Plug-and-play kits with BLE setup, 4G connectivity, and rugged enclosures.",
+    icon: "deployment",
   },
 ];
 
 export const PRICING = [
   {
     name: "Starter",
+    capability: "Insight",
+    description:
+      "Core field visibility with essential alerts and dashboards for trial deployments.",
     price: "$15",
     unit: "per month",
     highlight: false,
-    blurb: "For trials and small plots",
     features: [
       "Live moisture, temperature, and salinity",
       "Platform and App access",
-      "BLE support"
+      "BLE support",
+      "CSV data export",
     ],
   },
   {
     name: "Grower",
+    capability: "Automate",
+    description:
+      "Advanced irrigation intelligence, collaboration tools, and proactive support.",
     price: "$13",
     unit: "per month per sensor",
     highlight: true,
-    blurb: "Best for mid-size farms",
     features: [
-      "Live moisture & temp",
-      "Irrigation guidance",
-      "Priority support",
+      "All of Starter, plus:",
+      "AI-powered Irrigation guidance",
+      "Remotely control irrigation",
+      "Crop health forecasting",
     ],
   },
   {
     name: "Enterprise",
+    capability: "Integrate",
+    description:
+      "End-to-end orchestration, data federation, and enterprise-grade governance.",
     price: "Custom",
     unit: "",
     highlight: false,
-    blurb: "Large farms & agribusiness",
     features: [
-      "Fleet management",
-      "API & integrations",
+      "All of Grower, plus:",
+      "Farm Management System",
+      "ERP Integration",
     ],
   },
 ];

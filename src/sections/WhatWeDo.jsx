@@ -10,10 +10,10 @@ const WhatWeDo = () => (
           What we do
         </h2>
         <p className="mt-3 text-neutral-700">
-          Hardware, software, and support for data-driven farming.
+          We deliver field data, analytics, and irrigation automation in one managed package—providing the tools and services you need to track conditions and automate field operations.
         </p>
       </div>
-      <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+      <div className="grid justify-items-center gap-6 sm:grid-cols-2 lg:grid-cols-4">
         {FEATURES.map((feature) => (
           <FeatureCard key={feature.title} feature={feature} />
         ))}

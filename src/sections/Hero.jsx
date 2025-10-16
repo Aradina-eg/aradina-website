@@ -8,10 +8,6 @@ const Hero = () => (
     <Container>
       <div className="grid items-center gap-10 py-16 md:grid-cols-2 md:py-24">
         <div>
-          <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-emerald-200 bg-white px-3 py-1 text-xs text-emerald-800 shadow-sm">
-            <IconLeaf />
-            <span>Water-smart farming</span>
-          </div>
           <h1 className="text-4xl font-extrabold tracking-tight text-neutral-900 sm:text-5xl">
             {SITE.tagline}
           </h1>
@@ -25,12 +21,6 @@ const Hero = () => (
             >
               {SITE.ctaPrimary}
             </a>
-            <a
-              href="#pricing"
-              className="rounded-xl border border-neutral-300 px-5 py-3 text-neutral-900 hover:bg-neutral-100"
-            >
-              {SITE.ctaSecondary}
-            </a>
           </div>
         </div>
         <div className="relative">
@@ -39,7 +29,7 @@ const Hero = () => (
           </div>
           <div className="absolute -bottom-6 -right-6 hidden rounded-2xl border border-neutral-200 bg-white p-4 text-sm shadow-lg md:block">
             <div className="font-semibold text-neutral-900">Save up to 30% water</div>
-            <div className="text-neutral-600">Using sensor-driven irrigation</div>
+            <div className="text-neutral-600">Using iot-driven irrigation</div>
           </div>
         </div>
       </div>
