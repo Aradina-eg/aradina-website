@@ -8,16 +8,19 @@ const PricingCard = ({ plan }) => (
         : "border-neutral-200 bg-white"
     } p-6 shadow-sm`}
   >
-    <div className="flex items-baseline justify-between">
-      <h3 className="text-xl font-semibold text-neutral-900">{plan.name}</h3>
+    {plan.capability ? (
       <span
-        className={`text-sm ${
-          plan.highlight ? "text-emerald-700" : "text-neutral-500"
+        className={`text-xs font-semibold uppercase tracking-wide ${
+          plan.highlight ? "text-emerald-700" : "text-emerald-600"
         }`}
       >
-        {plan.blurb}
+        {plan.capability}
       </span>
-    </div>
+    ) : null}
+    <h3 className="mt-2 text-xl font-semibold text-neutral-900">{plan.name}</h3>
+    {plan.description ? (
+      <p className="mt-2 text-sm text-neutral-600">{plan.description}</p>
+    ) : null}
     <div className="mt-3 text-3xl font-extrabold text-neutral-900">
       {plan.price}
     </div>
