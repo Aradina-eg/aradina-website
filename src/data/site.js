@@ -38,9 +38,9 @@ export const PRICING = [
     highlight: false,
     blurb: "For trials and small plots",
     features: [
-      "1 sensor kit",
-      "Live moisture & temp",
-      "Basic analytics",
+      "Live moisture, temperature, and salinity",
+      "Platform and App access",
+      "BLE support"
     ],
   },
   {

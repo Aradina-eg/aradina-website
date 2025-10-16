@@ -34,16 +34,27 @@ const PricingCard = ({ plan }) => (
         </li>
       ))}
     </ul>
-    <a
-      href="#contact"
-      className={`mt-6 inline-flex items-center justify-center rounded-xl px-4 py-2 font-medium shadow ${
-        plan.highlight
-          ? "bg-emerald-600 text-white hover:bg-emerald-700"
-          : "border border-neutral-300 text-neutral-900 hover:bg-neutral-100"
-      }`}
-    >
-      Choose {plan.name}
-    </a>
+    <div className="mt-auto flex pt-6">
+      <a
+        href="#contact"
+        onClick={() => {
+          if (typeof window !== "undefined") {
+            window.dispatchEvent(
+              new CustomEvent("pricing-select", {
+                detail: { planName: plan.name },
+              }),
+            );
+          }
+        }}
+        className={`inline-flex w-full items-center justify-center rounded-xl px-4 py-2 font-medium shadow ${
+          plan.highlight
+            ? "bg-emerald-600 text-white hover:bg-emerald-700"
+            : "border border-neutral-300 text-neutral-900 hover:bg-neutral-100"
+        }`}
+      >
+        Choose {plan.name}
+      </a>
+    </div>
   </div>
 );
 

@@ -35,7 +35,7 @@ const FieldPlannerModal = ({ onClose }) => {
             <IconClose className="h-5 w-5" />
           </button>
         </div>
-        <div className="space-y-6 px-6 py-3">
+        <div className="space-y-4 px-6 py-3">
           <div className="space-y-3">
             <label className="block text-sm font-medium text-neutral-700">
               Field size
@@ -81,7 +81,7 @@ const FieldPlannerModal = ({ onClose }) => {
               </p>
             )}
           </div>
-          <div className="p-4 text-xs text-neutral-600">
+          <div className="p-2 mb-5 text-xs text-neutral-600">
             <p>
               This is only a rough estimate. The recommended number of sensors
               and their installation points depend on the field&apos;s geographical topology, which we

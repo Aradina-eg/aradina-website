@@ -28,18 +28,14 @@ const Pricing = () => {
             ))}
           </div>
           <div className="mt-6 text-center text-sm text-neutral-600">
-            <p>Use our tool to find how many sensors you need for your field.</p>
+            <p>Use our tool to estimate how many sensors you need for your field.</p>
             <button
               type="button"
               onClick={() => setPlannerOpen(true)}
               className="mt-3 inline-flex items-center justify-center rounded-lg bg-emerald-600 px-4 py-2 text-sm font-medium text-white shadow-sm transition hover:bg-emerald-700"
             >
-              Open field planner
+              Field Sensor Estimator
             </button>
-            <p className="mt-2 text-xs text-neutral-500">
-              The number of sensors required depends on each field. Choose them
-              yourself or let our analytics suggest optimal placement.
-            </p>
           </div>
         </Container>
       </section>
