@@ -4,9 +4,17 @@ import { SITE } from "../data/site.js";
 
 const Hero = () => (
   <section id="top" className="relative overflow-hidden">
-    <div className="absolute inset-0 -z-10 bg-gradient-to-b from-emerald-50 to-white" />
-    <Container>
-      <div className="grid items-center gap-10 py-16 md:grid-cols-2 md:py-24">
+    <div className="absolute inset-0">
+      <img
+        src="/images/background.png"
+        alt="Orchard canopy and sky"
+        className="h-full w-full object-cover object-center"
+      />
+      <div className="absolute inset-0 bg-gradient-to-b from-transparent via-white/30 to-white" />
+    </div>
+    <div className="relative z-10">
+      <Container>
+        <div className="grid items-center gap-10 py-16 md:grid-cols-2 md:py-24">
         <div>
           <h1 className="text-4xl font-extrabold tracking-tight text-neutral-900 sm:text-5xl">
             {SITE.tagline}
@@ -24,16 +32,21 @@ const Hero = () => (
           </div>
         </div>
         <div className="relative">
-          <div className="mx-auto aspect-[4/3] w-full max-w-md overflow-hidden rounded-2xl border border-neutral-200 bg-white shadow-xl">
-            <div className="h-full w-full bg-[radial-gradient(circle_at_30%_20%,#c7f9cc,transparent_40%),radial-gradient(circle_at_70%_60%,#a7f3d0,transparent_40%)]" />
+          <div className="mx-auto aspect-square w-full max-w-sm overflow-hidden rounded-full border-4 border-white/70 bg-white/80 shadow-xl backdrop-blur">
+            <img
+              src="/images/sensor.png"
+              alt="Aradina sensor hardware"
+              className="h-full w-full object-cover"
+            />
           </div>
           <div className="absolute -bottom-6 -right-6 hidden rounded-2xl border border-neutral-200 bg-white p-4 text-sm shadow-lg md:block">
             <div className="font-semibold text-neutral-900">Save up to 30% water</div>
-            <div className="text-neutral-600">Using iot-driven irrigation</div>
+            <div className="text-neutral-600">Using sensor-driven irrigation</div>
           </div>
         </div>
       </div>
-    </Container>
+      </Container>
+    </div>
   </section>
 );
 
