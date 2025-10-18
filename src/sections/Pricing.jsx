@@ -33,24 +33,23 @@ const Pricing = () => {
     setSensorCountInput(String(Math.round(parsed)));
   };
 
-  const getMonthlyRate = (count) => {
+  const getTierDiscount = (count) => {
     const tier = SENSOR_PRICING.tiers.find(
       ({ min, max }) => count >= min && (max === null || count <= max),
     );
     if (tier) {
-      return tier.monthly;
+      return tier.discount ?? 0;
     }
     const fallback = SENSOR_PRICING.tiers[SENSOR_PRICING.tiers.length - 1];
-    return fallback.monthly;
+    return fallback?.discount ?? 0;
   };
 
   const sensorCount = Number(sensorCountInput);
   const hasValidSensorCount = Number.isFinite(sensorCount) && sensorCount > 0;
-  const volumeRate = hasValidSensorCount ? getMonthlyRate(sensorCount) : null;
+  const tierDiscount = hasValidSensorCount ? getTierDiscount(sensorCount) : 0;
   const isYearly = billingCycle === "yearly";
   const yearlyDiscountPercent = Math.round(SENSOR_PRICING.yearlyDiscount * 100);
   const yearlyMultiplier = 1 - SENSOR_PRICING.yearlyDiscount;
-  const baseTierRate = SENSOR_PRICING.tiers[0]?.monthly ?? null;
 
   const displayedPlans = PRICING.map((plan) => {
     if (plan.monthlyRate === null) {
@@ -64,20 +63,20 @@ const Pricing = () => {
       };
     }
 
-    let baseMonthlyRate = plan.monthlyRate;
-    if (volumeRate !== null && baseTierRate !== null) {
-      const delta = volumeRate - baseTierRate;
-      baseMonthlyRate = Math.max(plan.monthlyRate + delta, 0);
-    }
+    const appliedVolumeDiscount = tierDiscount;
+    const discountMultiplier = Math.max(1 - appliedVolumeDiscount, 0);
+    const effectiveMonthlyRate = hasValidSensorCount
+      ? Math.max(plan.monthlyRate * discountMultiplier, 0)
+      : plan.monthlyRate;
 
     const billedMonthly = hasValidSensorCount
-      ? baseMonthlyRate * sensorCount
-      : baseMonthlyRate;
+      ? effectiveMonthlyRate * sensorCount
+      : plan.monthlyRate;
     const priceValue = isYearly
       ? billedMonthly * 12 * yearlyMultiplier
       : billedMonthly;
 
-    const sensorLabel = sensorCount === 1 ? "sensor" : "sensors";
+    const sensorLabel = sensorCount === 1 ? "device" : "devices";
 
     const displayUnit = hasValidSensorCount
       ? isYearly
@@ -88,13 +87,20 @@ const Pricing = () => {
         : plan.unitMonthly;
 
     let savingsNote = null;
-    if (hasValidSensorCount) {
-      const perSensorText = `${formatCurrency(baseMonthlyRate)} per sensor per month`;
-      savingsNote = isYearly
-        ? `${perSensorText} - Includes ${yearlyDiscountPercent}% annual discount`
-        : perSensorText;
-    } else if (isYearly) {
-      savingsNote = `${yearlyDiscountPercent}% off with annual billing`;
+    if (hasValidSensorCount && (appliedVolumeDiscount > 0 || isYearly)) {
+      const discountParts = [];
+      if (appliedVolumeDiscount > 0) {
+        discountParts.push(
+          `${Math.round(appliedVolumeDiscount * 100)}% volume discount`,
+        );
+      }
+      if (isYearly) {
+        discountParts.push(`${yearlyDiscountPercent}% annual discount`);
+      }
+      savingsNote =
+        discountParts.length > 0
+          ? `Includes ${discountParts.join(" and ")}`
+          : null;
     }
 
     return {
@@ -132,10 +138,7 @@ const Pricing = () => {
                 className="w-28 rounded-lg border border-neutral-300 px-3 py-2 text-base text-neutral-900 shadow-sm focus:border-emerald-500 focus:outline-none focus:ring-2 focus:ring-emerald-200"
               />
             </label>
-            <div className="flex flex-col items-center gap-2 sm:items-start">
-              <span className="text-sm font-medium text-neutral-700">
-                Billing cadence
-              </span>
+            <div className="flex flex-col items-center gap-2 sm:flex-row sm:items-center">
               <div className="inline-flex rounded-lg bg-neutral-100 p-1">
                 {["monthly", "yearly"].map((cycle) => (
                   <button
@@ -152,7 +155,7 @@ const Pricing = () => {
                   </button>
                 ))}
               </div>
-              <span className="text-xs text-neutral-500">
+              <span className="text-xs text-neutral-500 sm:ml-2">
                 {isYearly
                   ? `${yearlyDiscountPercent}% discount when billed annually`
                   : "Flexible month-to-month billing"}

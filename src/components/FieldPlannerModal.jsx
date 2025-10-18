@@ -457,8 +457,8 @@ const FieldPlannerModal = ({ onClose }) => {
   }, [fields.length, payload]);
 
   return (
-    <div className="fixed inset-0 z-50 overflow-y-auto bg-black/60">
-      <div className="flex min-h-full items-start justify-center px-4 pt-24 pb-12 md:pt-32 md:pb-14">
+    <div className="fixed inset-0 z-50 overflow-hidden bg-black/60">
+      <div className="flex min-h-full items-center justify-center px-4 py-12 md:py-16">
         <div
           className="flex w-full max-w-3xl flex-col overflow-hidden rounded-2xl bg-white shadow-xl"
           style={{ maxHeight: "calc(100vh - 6rem)" }}

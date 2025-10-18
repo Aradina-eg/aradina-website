@@ -19,12 +19,13 @@ export const FEATURES = [
       "See live field conditions, set alerts, and track trends over time on web & mobile.",
     icon: "insights",
   },
-  // {
-  //   title: "Fleet Automation",
-  //   body:
-  //     "Remotely schedule pumps, valves, and field hardware from one dashboard.",
-  //   icon: "automation",
-  // },
+  {
+    title: "Fleet Automation",
+    body:
+      "Remotely schedule pumps, valves, and field hardware from one dashboard.",
+    icon: "automation",
+    comingSoon: true,
+  },
   {
     title: "Easy deployment",
     body:
@@ -39,9 +40,9 @@ export const PRICING = [
     capability: "Insight",
     description:
       "Core field visibility with essential alerts and dashboards for trial deployments.",
-    monthlyRate: 15,
-    unitMonthly: "per month",
-    unitYearly: "per year",
+    monthlyRate: 13,
+    unitMonthly: "per month per device",
+    unitYearly: "per year per device",
     highlight: false,
     features: [
       "Live moisture, temperature, and salinity",
@@ -55,10 +56,11 @@ export const PRICING = [
     capability: "Automate",
     description:
       "Advanced irrigation intelligence, collaboration tools, and proactive support.",
-    monthlyRate: 13,
-    unitMonthly: "per month per sensor",
-    unitYearly: "per year per sensor",
+    monthlyRate: 15,
+    unitMonthly: "per month per device",
+    unitYearly: "per year per device",
     highlight: true,
+    comingSoon: true,
     features: [
       "All of Starter, plus:",
       "AI-powered Irrigation guidance",
@@ -86,9 +88,9 @@ export const PRICING = [
 
 export const SENSOR_PRICING = {
   tiers: [
-    { min: 1, max: 10, monthly: 15 },
-    { min: 11, max: 25, monthly: 13 },
-    { min: 26, max: null, monthly: 11 },
+    { min: 1, max: 10, discount: 0 },
+    { min: 11, max: 25, discount: 0.1333 },
+    { min: 26, max: null, discount: 0.2667 },
   ],
   yearlyDiscount: 0.1,
 };

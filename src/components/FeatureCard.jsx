@@ -19,6 +19,11 @@ const FeatureCard = ({ feature }) => (
         return <Icon className="h-6 w-6" />;
       })()}
     </div>
+    {feature.comingSoon ? (
+      <span className="mb-2 rounded-full bg-amber-100 px-3 py-1 text-xs font-semibold text-amber-700">
+        Coming soon
+      </span>
+    ) : null}
     <h3 className="text-lg font-semibold text-neutral-900">{feature.title}</h3>
     <p className="mt-2 text-sm leading-relaxed text-neutral-700">{feature.body}</p>
   </div>

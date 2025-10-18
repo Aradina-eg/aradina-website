@@ -17,7 +17,14 @@ const PricingCard = ({ plan }) => (
         {plan.capability}
       </span>
     ) : null}
-    <h3 className="mt-2 text-xl font-semibold text-neutral-900">{plan.name}</h3>
+    <div className="mt-2 flex flex-wrap items-center gap-2">
+      <h3 className="text-xl font-semibold text-neutral-900">{plan.name}</h3>
+      {plan.comingSoon ? (
+        <span className="rounded-full bg-amber-100 px-3 py-1 text-xs font-semibold text-amber-700">
+          Coming soon
+        </span>
+      ) : null}
+    </div>
     {plan.description ? (
       <p className="mt-2 text-sm text-neutral-600">{plan.description}</p>
     ) : null}
