@@ -19,6 +19,9 @@ const Nav = () => {
             <span className="text-neutral-900">{SITE.name}</span>
           </a>
           <nav className="hidden items-center gap-8 text-sm text-neutral-700 md:flex">
+            <a href="#about" className="hover:text-neutral-950">
+              About
+            </a>
             <a href="#features" className="hover:text-neutral-950">
               What we do
             </a>
