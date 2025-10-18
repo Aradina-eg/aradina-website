@@ -22,11 +22,18 @@ const PricingCard = ({ plan }) => (
       <p className="mt-2 text-sm text-neutral-600">{plan.description}</p>
     ) : null}
     <div className="mt-3 text-3xl font-extrabold text-neutral-900">
-      {plan.price}
+      {plan.displayPrice}
     </div>
-    <div className="text-sm text-neutral-500">
-      {plan.unit}
-    </div>
+    {plan.displayUnit ? (
+      <div className="text-sm text-neutral-500">
+        {plan.displayUnit}
+      </div>
+    ) : null}
+    {plan.savingsNote ? (
+      <div className="mt-1 text-xs font-medium text-emerald-700">
+        {plan.savingsNote}
+      </div>
+    ) : null}
     <ul className="mt-4 space-y-2 text-sm">
       {plan.features.map((feature) => (
         <li key={feature} className="flex items-start gap-2 text-neutral-700">

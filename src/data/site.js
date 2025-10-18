@@ -3,7 +3,7 @@ export const SITE = {
   tagline: "Smart irrigation made simple.",
   subTagline:
     "Sensors, insights, and automation to save water, boost yield, and cut costs.",
-  ctaPrimary: "Get a quote",
+  ctaPrimary: "Book a demo",
 };
 
 export const FEATURES = [
@@ -19,12 +19,12 @@ export const FEATURES = [
       "See live field conditions, set alerts, and track trends over time on web & mobile.",
     icon: "insights",
   },
-  {
-    title: "Fleet Automation",
-    body:
-      "Remotely schedule pumps, valves, and field hardware from one dashboard.",
-    icon: "automation",
-  },
+  // {
+  //   title: "Fleet Automation",
+  //   body:
+  //     "Remotely schedule pumps, valves, and field hardware from one dashboard.",
+  //   icon: "automation",
+  // },
   {
     title: "Easy deployment",
     body:
@@ -39,8 +39,9 @@ export const PRICING = [
     capability: "Insight",
     description:
       "Core field visibility with essential alerts and dashboards for trial deployments.",
-    price: "$15",
-    unit: "per month",
+    monthlyRate: 15,
+    unitMonthly: "per month",
+    unitYearly: "per year",
     highlight: false,
     features: [
       "Live moisture, temperature, and salinity",
@@ -54,8 +55,9 @@ export const PRICING = [
     capability: "Automate",
     description:
       "Advanced irrigation intelligence, collaboration tools, and proactive support.",
-    price: "$13",
-    unit: "per month per sensor",
+    monthlyRate: 13,
+    unitMonthly: "per month per sensor",
+    unitYearly: "per year per sensor",
     highlight: true,
     features: [
       "All of Starter, plus:",
@@ -69,8 +71,10 @@ export const PRICING = [
     capability: "Integrate",
     description:
       "End-to-end orchestration, data federation, and enterprise-grade governance.",
-    price: "Custom",
-    unit: "",
+    monthlyRate: null,
+    customLabel: "Custom",
+    unitMonthly: "",
+    unitYearly: "",
     highlight: false,
     features: [
       "All of Grower, plus:",
@@ -79,6 +83,15 @@ export const PRICING = [
     ],
   },
 ];
+
+export const SENSOR_PRICING = {
+  tiers: [
+    { min: 1, max: 10, monthly: 15 },
+    { min: 11, max: 25, monthly: 13 },
+    { min: 26, max: null, monthly: 11 },
+  ],
+  yearlyDiscount: 0.1,
+};
 
 export const CONTACT = {
   email: "ziad@aradina.solutions",
