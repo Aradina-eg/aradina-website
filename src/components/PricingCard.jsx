@@ -19,11 +19,6 @@ const PricingCard = ({ plan }) => (
     ) : null}
     <div className="mt-2 flex flex-wrap items-center gap-2">
       <h3 className="text-xl font-semibold text-neutral-900">{plan.name}</h3>
-      {plan.comingSoon ? (
-        <span className="rounded-full bg-amber-100 px-3 py-1 text-xs font-semibold text-amber-700">
-          Coming soon
-        </span>
-      ) : null}
     </div>
     {plan.description ? (
       <p className="mt-2 text-sm text-neutral-600">{plan.description}</p>
@@ -51,26 +46,32 @@ const PricingCard = ({ plan }) => (
         </li>
       ))}
     </ul>
-    <div className="mt-auto flex pt-6">
-      <a
-        href="#contact"
-        onClick={() => {
-          if (typeof window !== "undefined") {
-            window.dispatchEvent(
-              new CustomEvent("pricing-select", {
-                detail: { planName: plan.name },
-              }),
-            );
-          }
-        }}
-        className={`inline-flex w-full items-center justify-center rounded-xl px-4 py-2 font-medium shadow ${
-          plan.highlight
-            ? "bg-emerald-600 text-white hover:bg-emerald-700"
-            : "border border-neutral-300 text-neutral-900 hover:bg-neutral-100"
-        }`}
-      >
-        Choose {plan.name}
-      </a>
+    <div className="mt-auto pt-6">
+      {!plan.comingSoon ? (
+        <a
+          href="#contact"
+          onClick={() => {
+            if (typeof window !== "undefined") {
+              window.dispatchEvent(
+                new CustomEvent("pricing-select", {
+                  detail: { planName: plan.name },
+                }),
+              );
+            }
+          }}
+          className={`inline-flex w-full items-center justify-center rounded-xl px-4 py-2 font-medium shadow ${
+            plan.highlight
+              ? "bg-emerald-600 text-white hover:bg-emerald-700"
+              : "border border-neutral-300 text-neutral-900 hover:bg-neutral-100"
+          }`}
+        >
+          Choose {plan.name}
+        </a>
+      ) : (
+        <div className="flex w-full items-center justify-center rounded-xl border border-dashed border-amber-300 bg-amber-50 px-4 py-2 text-sm font-semibold uppercase tracking-wide text-amber-700">
+          Coming soon
+        </div>
+      )}
     </div>
   </div>
 );

@@ -134,7 +134,7 @@ const Pricing = () => {
                 min="1"
                 value={sensorCountInput}
                 onChange={handleSensorCountChange}
-                placeholder="e.g. 20"
+                placeholder="e.g. 1"
                 className="w-28 rounded-lg border border-neutral-300 px-3 py-2 text-base text-neutral-900 shadow-sm focus:border-emerald-500 focus:outline-none focus:ring-2 focus:ring-emerald-200"
               />
             </label>
