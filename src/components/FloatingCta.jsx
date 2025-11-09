@@ -1,7 +1,7 @@
 const FloatingCta = () => (
   <a
     href="#contact"
-    className="fixed bottom-6 right-6 inline-flex items-center gap-2 rounded-full bg-emerald-600 px-5 py-3 text-white shadow-lg hover:bg-emerald-700"
+    className="fixed bottom-6 right-6 inline-flex items-center gap-2 rounded-full bg-brand-600 px-5 py-3 text-white shadow-lg hover:bg-brand-700"
   >
     <svg
       className="h-5 w-5"

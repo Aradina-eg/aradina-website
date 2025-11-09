@@ -89,26 +89,26 @@ const Contact = () => {
                 name="name"
                 required
                 placeholder="Your name"
-                className="w-full rounded-lg border border-neutral-300 px-3 py-2 outline-none focus:ring-2 focus:ring-emerald-500"
+                className="w-full rounded-lg border border-neutral-300 px-3 py-2 outline-none focus:ring-2 focus:ring-brand-500"
               />
               <input
                 name="email"
                 type="email"
                 required
                 placeholder="Email"
-                className="w-full rounded-lg border border-neutral-300 px-3 py-2 outline-none focus:ring-2 focus:ring-emerald-500"
+                className="w-full rounded-lg border border-neutral-300 px-3 py-2 outline-none focus:ring-2 focus:ring-brand-500"
               />
               <input
                 name="phone"
                 placeholder="Phone (optional)"
-                className="w-full rounded-lg border border-neutral-300 px-3 py-2 outline-none focus:ring-2 focus:ring-emerald-500"
+                className="w-full rounded-lg border border-neutral-300 px-3 py-2 outline-none focus:ring-2 focus:ring-brand-500"
               />
               <select
                 name="reason"
                 required
                 value={reason}
                 onChange={handleReasonChange}
-                className="w-full rounded-lg border border-neutral-300 px-3 py-2 outline-none focus:ring-2 focus:ring-emerald-500"
+                className="w-full rounded-lg border border-neutral-300 px-3 py-2 outline-none focus:ring-2 focus:ring-brand-500"
               >
                 <option value="" disabled>
                   Reason for reaching out
@@ -125,7 +125,7 @@ const Contact = () => {
                   required
                   value={selectedPackage}
                   onChange={(event) => setSelectedPackage(event.target.value)}
-                  className="w-full rounded-lg border border-neutral-300 px-3 py-2 outline-none focus:ring-2 focus:ring-emerald-500"
+                  className="w-full rounded-lg border border-neutral-300 px-3 py-2 outline-none focus:ring-2 focus:ring-brand-500"
                 >
                   <option value="" disabled>
                     Select a package
@@ -142,11 +142,11 @@ const Contact = () => {
                 required
                 placeholder="Your message"
                 rows={5}
-                className="w-full rounded-lg border border-neutral-300 px-3 py-2 outline-none focus:ring-2 focus:ring-emerald-500"
+                className="w-full rounded-lg border border-neutral-300 px-3 py-2 outline-none focus:ring-2 focus:ring-brand-500"
               />
               <button
                 type="submit"
-                className="w-full rounded-xl bg-emerald-600 px-4 py-2 font-medium text-white shadow hover:bg-emerald-700"
+                className="w-full rounded-xl bg-brand-600 px-4 py-2 font-medium text-white shadow hover:bg-brand-700"
               >
                 Send via email
               </button>

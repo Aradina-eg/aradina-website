@@ -50,13 +50,13 @@ const FeatureDetailsModal = ({ feature, onClose }) => {
       />
       <div className="relative z-10 w-full max-w-lg rounded-2xl bg-white p-6 shadow-2xl">
         <div className="flex items-start justify-between gap-4">
-          <div className="inline-flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-xl bg-emerald-50 text-emerald-700">
+          <div className="inline-flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-xl bg-brand-50 text-brand-700">
             <Icon className="h-6 w-6" />
           </div>
           <button
             type="button"
             onClick={onClose}
-            className="rounded-lg border border-neutral-200 p-2 text-neutral-500 transition hover:bg-neutral-100 hover:text-neutral-700 focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500"
+            className="rounded-lg border border-neutral-200 p-2 text-neutral-500 transition hover:bg-neutral-100 hover:text-neutral-700 focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-500"
             aria-label="Close feature details"
           >
             <svg
@@ -91,6 +91,40 @@ const FeatureDetailsModal = ({ feature, onClose }) => {
               <p key={index}>{paragraph}</p>
             ))}
           </div>
+          {Array.isArray(feature.specs) && feature.specs.length ? (
+            <div className="mt-6">
+              <h4 className="text-sm font-semibold uppercase tracking-wide text-neutral-500">
+                Hardware specifications
+              </h4>
+              <div className="mt-2 overflow-hidden rounded-xl border border-neutral-200">
+                <table className="w-full text-left text-sm">
+                  <thead className="bg-neutral-50 text-neutral-600">
+                    <tr>
+                      <th className="px-4 py-3 font-medium">Parameter</th>
+                      <th className="px-4 py-3 font-medium">Range</th>
+                      <th className="px-4 py-3 font-medium">Precision / Notes</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {feature.specs.map((spec, index) => (
+                      <tr
+                        key={`${spec.parameter}-${index}`}
+                        className={index % 2 === 0 ? "bg-white" : "bg-neutral-50"}
+                      >
+                        <td className="px-4 py-3 font-medium text-neutral-900">
+                          {spec.parameter}
+                        </td>
+                        <td className="px-4 py-3 text-neutral-700">{spec.range}</td>
+                        <td className="px-4 py-3 text-neutral-600">
+                          {spec.precision || spec.notes}
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          ) : null}
         </div>
       </div>
     </div>,

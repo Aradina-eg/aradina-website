@@ -135,7 +135,7 @@ const Pricing = () => {
                 value={sensorCountInput}
                 onChange={handleSensorCountChange}
                 placeholder="e.g. 1"
-                className="w-28 rounded-lg border border-neutral-300 px-3 py-2 text-base text-neutral-900 shadow-sm focus:border-emerald-500 focus:outline-none focus:ring-2 focus:ring-emerald-200"
+                className="w-28 rounded-lg border border-neutral-300 px-3 py-2 text-base text-neutral-900 shadow-sm focus:border-brand-500 focus:outline-none focus:ring-2 focus:ring-brand-200"
               />
             </label>
             <div className="flex flex-col items-center gap-2 sm:flex-row sm:items-center">
@@ -147,7 +147,7 @@ const Pricing = () => {
                     onClick={() => setBillingCycle(cycle)}
                     className={`flex-1 rounded-md px-3 py-2 text-sm font-medium transition ${
                       billingCycle === cycle
-                        ? "bg-white text-emerald-600 shadow"
+                        ? "bg-white text-brand-600 shadow"
                         : "text-neutral-600 hover:text-neutral-800"
                     }`}
                   >
@@ -172,7 +172,7 @@ const Pricing = () => {
             <button
               type="button"
               onClick={() => setPlannerOpen(true)}
-              className="mt-3 inline-flex items-center justify-center rounded-lg bg-emerald-600 px-4 py-2 text-sm font-medium text-white shadow-sm transition hover:bg-emerald-700"
+              className="mt-3 inline-flex items-center justify-center rounded-lg bg-brand-600 px-4 py-2 text-sm font-medium text-white shadow-sm transition hover:bg-brand-700"
             >
               Field Sensor Estimator
             </button>

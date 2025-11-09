@@ -4,14 +4,14 @@ const PricingCard = ({ plan }) => (
   <div
     className={`flex flex-col rounded-2xl border ${
       plan.highlight
-        ? "border-emerald-300 bg-emerald-50"
+        ? "border-brand-300 bg-brand-50"
         : "border-neutral-200 bg-white"
     } p-6 shadow-sm`}
   >
     {plan.capability ? (
       <span
         className={`text-xs font-semibold uppercase tracking-wide ${
-          plan.highlight ? "text-emerald-700" : "text-emerald-600"
+          plan.highlight ? "text-brand-700" : "text-brand-600"
         }`}
       >
         {plan.capability}
@@ -32,14 +32,14 @@ const PricingCard = ({ plan }) => (
       </div>
     ) : null}
     {plan.savingsNote ? (
-      <div className="mt-1 text-xs font-medium text-emerald-700">
+      <div className="mt-1 text-xs font-medium text-brand-700">
         {plan.savingsNote}
       </div>
     ) : null}
     <ul className="mt-4 space-y-2 text-sm">
       {plan.features.map((feature) => (
         <li key={feature} className="flex items-start gap-2 text-neutral-700">
-          <span className="mt-0.5 text-emerald-600">
+          <span className="mt-0.5 text-brand-600">
             <IconCheck />
           </span>
           <span>{feature}</span>
@@ -61,7 +61,7 @@ const PricingCard = ({ plan }) => (
           }}
           className={`inline-flex w-full items-center justify-center rounded-xl px-4 py-2 font-medium shadow ${
             plan.highlight
-              ? "bg-emerald-600 text-white hover:bg-emerald-700"
+              ? "bg-brand-600 text-white hover:bg-brand-700"
               : "border border-neutral-300 text-neutral-900 hover:bg-neutral-100"
           }`}
         >

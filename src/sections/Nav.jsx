@@ -11,12 +11,16 @@ const Nav = () => {
         <div className="flex items-center justify-between py-4">
           <a
             href="#top"
-            className="flex items-center gap-2 font-semibold tracking-tight"
+            aria-label={`${SITE.name} home`}
+            className="flex items-center"
           >
-            <span className="inline-flex h-9 w-9 items-center justify-center rounded-xl bg-emerald-600 text-white shadow-sm">
-              A
+            <span className="flex h-9 items-center overflow-hidden">
+              <img
+                src="/aradina-logo-3.png"
+                alt={`${SITE.name} logo`}
+                className="h-16 w-auto"
+              />
             </span>
-            <span className="text-neutral-900">{SITE.name}</span>
           </a>
           <nav className="hidden items-center gap-8 text-sm text-neutral-700 md:flex">
             <a href="#about" className="hover:text-neutral-950">
@@ -33,7 +37,7 @@ const Nav = () => {
             </a>
             <a
               href="#contact"
-              className="rounded-xl bg-neutral-900 px-4 py-2 text-white hover:bg-neutral-800"
+              className="rounded-xl bg-brand-600 px-4 py-2 text-white hover:bg-brand-700"
             >
               {SITE.ctaPrimary}
             </a>
@@ -77,7 +81,7 @@ const Nav = () => {
               </a>
               <a
                 href="#contact"
-                className="rounded-lg bg-neutral-900 px-3 py-2 text-white hover:bg-neutral-800"
+                className="rounded-lg bg-brand-600 px-3 py-2 text-white hover:bg-brand-700"
               >
                 {SITE.ctaPrimary}
               </a>

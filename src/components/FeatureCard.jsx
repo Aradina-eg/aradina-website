@@ -15,10 +15,10 @@ const FeatureCard = ({ feature, onSelect }) => (
   <button
     type="button"
     onClick={() => onSelect?.(feature)}
-    className="group flex h-full w-full flex-col items-center rounded-2xl border border-neutral-200 bg-white p-6 text-center shadow-sm transition hover:shadow-md focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500"
+    className="group flex h-full w-full flex-col items-center rounded-2xl border border-neutral-200 bg-white p-6 text-center shadow-sm transition hover:shadow-md focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-500"
     aria-label={`Learn more about ${feature.title}`}
   >
-    <div className="mb-3 inline-flex h-12 w-12 items-center justify-center rounded-xl bg-emerald-50 text-emerald-700">
+    <div className="mb-3 inline-flex h-12 w-12 items-center justify-center rounded-xl bg-brand-50 text-brand-700">
       {(() => {
         const Icon = ICONS[feature.icon] ?? IconLeaf;
         return <Icon className="h-6 w-6" />;

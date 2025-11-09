@@ -6,9 +6,11 @@ const Footer = () => (
     <Container>
       <div className="flex flex-col items-center justify-between gap-4 text-sm text-neutral-600 md:flex-row">
         <div className="flex items-center gap-2">
-          <span className="inline-flex h-7 w-7 items-center justify-center rounded-lg bg-emerald-600 text-white">
-            A
-          </span>
+          <img
+            src="/aradina-logo-2.png"
+            alt="Aradina logo"
+            className="h-7 w-7 rounded-lg object-cover"
+          />
           <span>
             &copy; {new Date().getFullYear()} {SITE.name}. All rights reserved.
           </span>

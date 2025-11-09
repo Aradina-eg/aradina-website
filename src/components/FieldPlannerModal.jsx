@@ -108,16 +108,12 @@ const fakePlannerRequest = (payload) =>
     setTimeout(() => {
       const breakdown = payload.fields.map((field) => {
         const hectares = (field.areaSqMeters || 0) / 10000;
-        const areaSensors = Math.max(1, Math.round(hectares));
-        const shapeSensors = Math.max(
-          0,
-          Math.round(Math.sqrt(field.coordinates.length))
-        );
+        const suggestedSensors = Math.max(1, Math.ceil(hectares));
 
         return {
           label: field.label,
           areaSqMeters: field.areaSqMeters,
-          suggestedSensors: Math.max(1, areaSensors + shapeSensors),
+          suggestedSensors,
         };
       });
 
@@ -502,7 +498,7 @@ const FieldPlannerModal = ({ onClose }) => {
               className={`inline-flex items-center justify-center rounded-lg p-2 text-neutral-50 shadow-sm transition ${
                 isDrawing
                   ? "bg-neutral-900 hover:bg-neutral-800"
-                  : "bg-emerald-600 hover:bg-emerald-700"
+                  : "bg-brand-600 hover:bg-brand-700"
               }`}
               title={drawingLabel}
               aria-pressed={isDrawing}
@@ -590,7 +586,7 @@ const FieldPlannerModal = ({ onClose }) => {
               type="button"
               onClick={handleCompleteField}
               disabled={currentPoints.length < 3}
-              className="inline-flex items-center justify-center rounded-lg border border-emerald-600 p-2 text-emerald-700 hover:bg-emerald-50 disabled:cursor-not-allowed disabled:border-neutral-200 disabled:text-neutral-400"
+              className="inline-flex items-center justify-center rounded-lg border border-brand-600 p-2 text-brand-700 hover:bg-brand-50 disabled:cursor-not-allowed disabled:border-neutral-200 disabled:text-neutral-400"
               title="Complete field"
               aria-label="Complete field"
             >
@@ -613,7 +609,7 @@ const FieldPlannerModal = ({ onClose }) => {
                 type="button"
                 onClick={handleSubmit}
                 disabled={isSubmitting}
-                className="inline-flex items-center gap-2 rounded-lg bg-emerald-600 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-emerald-700 disabled:cursor-not-allowed disabled:bg-emerald-500"
+                className="inline-flex items-center gap-2 rounded-lg bg-brand-600 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-brand-700 disabled:cursor-not-allowed disabled:bg-brand-500"
               >
                 {isSubmitting ? "Calculating..." : "Calculate"}
               </button>
@@ -629,8 +625,8 @@ const FieldPlannerModal = ({ onClose }) => {
           ) : null}
 
           {result ? (
-            <div className="mt-6 rounded-xl border border-emerald-200 bg-emerald-50 p-4 text-sm text-neutral-800">
-              <p className="font-semibold text-emerald-700">
+            <div className="mt-6 rounded-xl border border-brand-200 bg-brand-50 p-4 text-sm text-neutral-800">
+              <p className="font-semibold text-brand-700">
                 Placeholder response: {result.sensorsNeeded} sensors
                 recommended.
               </p>

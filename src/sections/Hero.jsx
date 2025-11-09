@@ -25,7 +25,7 @@ const Hero = () => (
           <div className="mt-8 flex flex-wrap gap-3">
             <a
               href="#contact"
-              className="rounded-xl bg-emerald-600 px-5 py-3 text-white shadow hover:bg-emerald-700"
+              className="rounded-xl bg-brand-600 px-5 py-3 text-white shadow hover:bg-brand-700"
             >
               {SITE.ctaPrimary}
             </a>
