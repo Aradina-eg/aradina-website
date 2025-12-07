@@ -10,32 +10,32 @@ export const FEATURES = [
   {
     title: "Soil Sensing",
     body:
-      "Solar-powered field sensors track moisture, salinity, temperature and more.",
+      "Solar-powered field sensors track moisture, salinity, and temperature.",
     icon: "soil",
     details: [
       "Deploy probe arrays that measure the moisture profile every 15 minutes so you always know when and where the field needs irrigation.",
-      "Data streams automatically sync through 4G and mesh backhaul, even in remote blocks without existing connectivity.",
+      "Data streams automatically sync through 4G and BLE backhaul, even in remote blocks without existing connectivity.",
     ],
     specs: [
       {
         parameter: "Volumetric water content",
-        range: "0–80% VWC",
+        range: "0–100% VWC",
         precision: "±2% after soil calibration",
       },
       {
         parameter: "Soil temperature",
-        range: "-20°C to 60°C",
+        range: "-40°C to 80°C",
         precision: "±0.5°C",
       },
       {
         parameter: "Soil salinity (EC)",
-        range: "0–16 dS/m",
-        precision: "±2% of reading",
+        range: "0–20000 uS/cm",
+        precision: "±3% of reading",
       },
       {
         parameter: "Reporting cadence",
-        range: "Every 15 minutes",
-        precision: "Burst mode down to 1 minute",
+        range: "Defaults every 15 minutes",
+        precision: "Can be adjusted per device",
       },
     ],
   },
@@ -46,7 +46,7 @@ export const FEATURES = [
     icon: "insights",
     details: [
       "Dashboards highlight anomalies, trend lines, and irrigation set-points at a glance for each block and device.",
-      "Configurable alerts let your team know about issues instantly across SMS, email, or the mobile app.",
+      "Configurable alerts let your team know about issues instantly across all your fields.",
     ],
   },
   {
@@ -57,7 +57,7 @@ export const FEATURES = [
     comingSoon: true,
     details: [
       "Integrate pump stations, valves, and fertigation hardware with digital twins so you can trigger sequences without leaving the office.",
-      "Automation playbooks help you standardize irrigation programs and capture audit trails for compliance reporting.",
+      "Automation playbooks help you standardize irrigation programs.",
     ],
   },
   {
