@@ -1,6 +1,5 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import maplibregl from "maplibre-gl";
-import geojsonArea from "@mapbox/geojson-area";
 import "maplibre-gl/dist/maplibre-gl.css";
 
 const SATELLITE_STYLE = {
@@ -353,7 +352,6 @@ const FieldPlannerModal = ({ onClose }) => {
     setIsDrawing((prev) => !prev);
     setCurrentPoints([]);
     setDrawError(null);
-    setResult(null);
   }, []);
 
   const handleUndoPoint = useCallback(() => {
@@ -385,24 +383,11 @@ const FieldPlannerModal = ({ onClose }) => {
       return;
     }
 
-    const polygonGeometry = {
-      type: "Polygon",
-      coordinates: [
-        [
-          ...currentPoints.map((point) => [point.lng, point.lat]),
-          [currentPoints[0].lng, currentPoints[0].lat],
-        ],
-      ],
-    };
-
-    const areaSqMeters = geojsonArea.geometry(polygonGeometry);
-
     setFields((prev) => [
       ...prev,
       {
         id: `field-${Date.now()}`,
         coordinates: currentPoints,
-        areaSqMeters,
         label: `Field ${prev.length + 1}`,
       },
     ]);
@@ -417,7 +402,7 @@ const FieldPlannerModal = ({ onClose }) => {
 
   const handleSubmit = useCallback(async () => {
     if (!fields.length) {
-      setSubmissionError("Add at least one field polygon before submitting.");
+      setSubmissionError("Add at least one field before submitting.");
       return;
     }
 
@@ -447,7 +432,6 @@ const FieldPlannerModal = ({ onClose }) => {
           : Number(responseValue) || 0;
         return {
           label: field.label,
-          areaSqMeters: field.areaSqMeters,
           suggestedSensors,
         };
       });
@@ -467,6 +451,8 @@ const FieldPlannerModal = ({ onClose }) => {
     }
   }, [apiPayload, fields]);
 
+  const totalSensorLabel = result?.sensorsNeeded === 1 ? "sensor" : "sensors";
+
   return (
     <div className="fixed inset-0 z-50 overflow-hidden bg-black/60">
       <div className="flex min-h-full items-center justify-center px-4 py-12 md:py-16">
@@ -480,8 +466,9 @@ const FieldPlannerModal = ({ onClose }) => {
                 Field Sensor Planner
               </h3>
               <p className="mt-1 text-sm text-neutral-600">
-                Toggle drawing to drop points on the map. Complete a field to
-                add it to your submission, then repeat for each distinct field.
+                Toggle drawing to place vertices on the map. Complete a field
+                to add it to your submission, then repeat for each distinct
+                field.
               </p>
             </div>
           <button
@@ -642,13 +629,13 @@ const FieldPlannerModal = ({ onClose }) => {
           {result ? (
             <div className="mt-6 rounded-xl border border-brand-200 bg-brand-50 p-4 text-sm text-neutral-800">
               <p className="font-semibold text-brand-700">
-                {result.sensorsNeeded} sensors recommended.
+                {result.sensorsNeeded} {totalSensorLabel} recommended.
               </p>
               <ul className="mt-2 space-y-1 text-neutral-700">
                 {result.breakdown.map((item) => (
                   <li key={item.label}>
-                    {item.label}: {item.suggestedSensors} sensors across{" "}
-                    {(item.areaSqMeters / 10000).toFixed(2)} ha
+                    {item.label}: {item.suggestedSensors}{" "}
+                    {item.suggestedSensors === 1 ? "sensor" : "sensors"}
                   </li>
                 ))}
               </ul>
@@ -676,8 +663,7 @@ const FieldPlannerModal = ({ onClose }) => {
                         {field.label ?? `Field ${index + 1}`}
                       </p>
                       <p className="text-xs text-neutral-500">
-                        {field.coordinates.length} vertices -{" "}
-                        {(field.areaSqMeters / 10000).toFixed(2)} ha
+                        {field.coordinates.length} vertices
                       </p>
                     </div>
                     <button
@@ -696,12 +682,9 @@ const FieldPlannerModal = ({ onClose }) => {
               )}
             </ul>
             <p className="mt-3 text-xs text-neutral-500">
-              This tool sends each field polygon as WGS84 (lat/lng) to the
+              This tool sends each field's vertices as WGS84 (lat/lng) to the
               planner API for device estimation.
             </p>
-            <pre className="mt-3 max-h-32 overflow-auto rounded-lg bg-neutral-900 p-3 text-xs text-neutral-50">
-              {JSON.stringify(apiPayload, null, 2)}
-            </pre>
           </div>
         </div>
       </div>
