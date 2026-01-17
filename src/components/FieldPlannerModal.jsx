@@ -103,28 +103,27 @@ const buildCurrentCollection = (points) => {
   };
 };
 
-const fakePlannerRequest = (payload) =>
-  new Promise((resolve) => {
-    setTimeout(() => {
-      const breakdown = payload.fields.map((field) => {
-        const hectares = (field.areaSqMeters || 0) / 10000;
-        const suggestedSensors = Math.max(1, Math.ceil(hectares));
+const buildApiPayload = (fields) => {
+  const fieldEntries = fields.reduce((acc, field, index) => {
+    if (!field.coordinates?.length) {
+      return acc;
+    }
+    const ring = [
+      ...field.coordinates.map((coordinate) => [
+        coordinate.lng,
+        coordinate.lat,
+      ]),
+      [field.coordinates[0].lng, field.coordinates[0].lat],
+    ];
+    acc[String(index)] = {
+      type: "Polygon",
+      coordinates: [ring],
+    };
+    return acc;
+  }, {});
 
-        return {
-          label: field.label,
-          areaSqMeters: field.areaSqMeters,
-          suggestedSensors,
-        };
-      });
-
-      const sensorsNeeded = breakdown.reduce(
-        (total, item) => total + item.suggestedSensors,
-        0
-      );
-
-      resolve({ sensorsNeeded, breakdown });
-    }, 900);
-  });
+  return { fields: fieldEntries };
+};
 
 const FieldPlannerModal = ({ onClose }) => {
   const mapContainerRef = useRef(null);
@@ -414,21 +413,7 @@ const FieldPlannerModal = ({ onClose }) => {
     setResult(null);
   }, [currentPoints]);
 
-  const payload = useMemo(
-    () => ({
-      fields: fields.map((field, index) => ({
-        id: field.id,
-        label: field.label ?? `Field ${index + 1}`,
-        areaSqMeters: Number(field.areaSqMeters.toFixed(2)),
-        areaHectares: Number((field.areaSqMeters / 10000).toFixed(2)),
-        coordinates: field.coordinates.map((coordinate) => ({
-          lng: Number(coordinate.lng.toFixed(6)),
-          lat: Number(coordinate.lat.toFixed(6)),
-        })),
-      })),
-    }),
-    [fields]
-  );
+  const apiPayload = useMemo(() => buildApiPayload(fields), [fields]);
 
   const handleSubmit = useCallback(async () => {
     if (!fields.length) {
@@ -441,16 +426,46 @@ const FieldPlannerModal = ({ onClose }) => {
     setResult(null);
 
     try {
-      const response = await fakePlannerRequest(payload);
-      setResult(response);
+      const response = await fetch(
+        "https://api.aradina.solutions/required-devices",
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(apiPayload),
+        }
+      );
+
+      if (!response.ok) {
+        throw new Error(`Request failed with status ${response.status}`);
+      }
+
+      const data = await response.json();
+      const breakdown = fields.map((field, index) => {
+        const responseValue = data?.fields?.[String(index)];
+        const suggestedSensors = Number.isFinite(responseValue)
+          ? responseValue
+          : Number(responseValue) || 0;
+        return {
+          label: field.label,
+          areaSqMeters: field.areaSqMeters,
+          suggestedSensors,
+        };
+      });
+
+      const sensorsNeeded = breakdown.reduce(
+        (total, item) => total + item.suggestedSensors,
+        0
+      );
+
+      setResult({ sensorsNeeded, breakdown });
     } catch (error) {
       setSubmissionError(
-        "Unable to reach the planning service. Replace this placeholder with your backend integration."
+        "Unable to reach the planning service. Please try again in a moment."
       );
     } finally {
       setIsSubmitting(false);
     }
-  }, [fields.length, payload]);
+  }, [apiPayload, fields]);
 
   return (
     <div className="fixed inset-0 z-50 overflow-hidden bg-black/60">
@@ -627,8 +642,7 @@ const FieldPlannerModal = ({ onClose }) => {
           {result ? (
             <div className="mt-6 rounded-xl border border-brand-200 bg-brand-50 p-4 text-sm text-neutral-800">
               <p className="font-semibold text-brand-700">
-                Placeholder response: {result.sensorsNeeded} sensors
-                recommended.
+                {result.sensorsNeeded} sensors recommended.
               </p>
               <ul className="mt-2 space-y-1 text-neutral-700">
                 {result.breakdown.map((item) => (
@@ -682,12 +696,11 @@ const FieldPlannerModal = ({ onClose }) => {
               )}
             </ul>
             <p className="mt-3 text-xs text-neutral-500">
-              This prototype stores each vertex in WGS84 (lat/lng). Swap the
-              placeholder API call with your backend endpoint to run analytics
-              and sensor placement logic.
+              This tool sends each field polygon as WGS84 (lat/lng) to the
+              planner API for device estimation.
             </p>
             <pre className="mt-3 max-h-32 overflow-auto rounded-lg bg-neutral-900 p-3 text-xs text-neutral-50">
-              {JSON.stringify(payload, null, 2)}
+              {JSON.stringify(apiPayload, null, 2)}
             </pre>
           </div>
         </div>
