@@ -2,7 +2,7 @@ import Container from "../components/Container.jsx";
 import { SITE } from "../data/site.js";
 
 const Footer = () => (
-  <footer className="border-t border-neutral-200 bg-white py-8">
+  <footer className="border-t border-neutral-200 bg-stone-50 py-8">
     <Container>
       <div className="flex flex-col items-center justify-between gap-4 text-sm text-neutral-600 md:flex-row">
         <div className="flex items-center gap-2">
@@ -16,6 +16,9 @@ const Footer = () => (
           </span>
         </div>
         <div className="flex items-center gap-6">
+          <a href="#about" className="hover:text-neutral-900">
+            About
+          </a>
           <a href="#features" className="hover:text-neutral-900">
             What we do
           </a>

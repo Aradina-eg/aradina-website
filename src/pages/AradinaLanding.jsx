@@ -8,7 +8,7 @@ import Footer from "../sections/Footer.jsx";
 import FloatingCta from "../components/FloatingCta.jsx";
 
 const AradinaLanding = () => (
-  <div className="text-neutral-900">
+  <div className="bg-stone-50 text-neutral-900">
     <Nav />
     <Hero />
     <WhoWeAre />

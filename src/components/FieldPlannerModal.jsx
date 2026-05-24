@@ -31,6 +31,12 @@ const SATELLITE_STYLE = {
 
 const EMPTY_COLLECTION = { type: "FeatureCollection", features: [] };
 
+const MAP_BRAND_COLORS = {
+  fill: "#60C0B0",
+  line: "#347F74",
+  darkLine: "#205A52",
+};
+
 const buildFieldsCollection = (fields) => ({
   type: "FeatureCollection",
   features: fields.map((field) => ({
@@ -163,7 +169,7 @@ const FieldPlannerModal = ({ onClose }) => {
         type: "fill",
         source: "fields",
         paint: {
-          "fill-color": "#34d399",
+          "fill-color": MAP_BRAND_COLORS.fill,
           "fill-opacity": 0.25,
         },
       });
@@ -173,7 +179,7 @@ const FieldPlannerModal = ({ onClose }) => {
         type: "line",
         source: "fields",
         paint: {
-          "line-color": "#059669",
+          "line-color": MAP_BRAND_COLORS.line,
           "line-width": 2,
         },
       });
@@ -189,7 +195,7 @@ const FieldPlannerModal = ({ onClose }) => {
         source: "current-field",
         filter: ["==", ["get", "featureType"], "fill"],
         paint: {
-          "fill-color": "#10b981",
+          "fill-color": MAP_BRAND_COLORS.fill,
           "fill-opacity": 0.2,
         },
       });
@@ -200,7 +206,7 @@ const FieldPlannerModal = ({ onClose }) => {
         source: "current-field",
         filter: ["==", ["get", "featureType"], "outline"],
         paint: {
-          "line-color": "#047857",
+          "line-color": MAP_BRAND_COLORS.darkLine,
           "line-width": 2,
           "line-dasharray": [1.5, 1.5],
         },
@@ -213,7 +219,7 @@ const FieldPlannerModal = ({ onClose }) => {
         filter: ["==", ["get", "featureType"], "vertex"],
         paint: {
           "circle-radius": 5,
-          "circle-color": "#047857",
+          "circle-color": MAP_BRAND_COLORS.darkLine,
           "circle-stroke-color": "#ffffff",
           "circle-stroke-width": 1.5,
         },
@@ -442,7 +448,7 @@ const FieldPlannerModal = ({ onClose }) => {
       );
 
       setResult({ sensorsNeeded, breakdown });
-    } catch (error) {
+    } catch {
       setSubmissionError(
         "Unable to reach the planning service. Please try again in a moment."
       );
@@ -500,7 +506,7 @@ const FieldPlannerModal = ({ onClose }) => {
               className={`inline-flex items-center justify-center rounded-lg p-2 text-neutral-50 shadow-sm transition ${
                 isDrawing
                   ? "bg-neutral-900 hover:bg-neutral-800"
-                  : "bg-brand-600 hover:bg-brand-700"
+                  : "bg-brand-500 text-brand-950 hover:bg-brand-400"
               }`}
               title={drawingLabel}
               aria-pressed={isDrawing}
@@ -611,7 +617,7 @@ const FieldPlannerModal = ({ onClose }) => {
                 type="button"
                 onClick={handleSubmit}
                 disabled={isSubmitting}
-                className="inline-flex items-center gap-2 rounded-lg bg-brand-600 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-brand-700 disabled:cursor-not-allowed disabled:bg-brand-500"
+                className="inline-flex items-center gap-2 rounded-lg bg-brand-500 px-4 py-2 text-sm font-medium text-brand-950 shadow-sm hover:bg-brand-400 disabled:cursor-not-allowed disabled:bg-brand-300"
               >
                 {isSubmitting ? "Calculating..." : "Calculate"}
               </button>

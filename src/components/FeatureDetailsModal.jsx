@@ -45,7 +45,7 @@ const FeatureDetailsModal = ({ feature, onClose }) => {
   return createPortal(
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
       <div
-        className="absolute inset-0 bg-neutral-900/60 backdrop-blur-sm"
+        className="absolute inset-0 bg-neutral-900/65"
         onClick={onClose}
       />
       <div className="relative z-10 w-full max-w-lg rounded-2xl bg-white p-6 shadow-2xl">

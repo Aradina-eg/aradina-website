@@ -6,9 +6,9 @@ const Nav = () => {
   const [open, setOpen] = useState(false);
 
   return (
-    <header className="sticky top-0 z-40 border-b border-neutral-200 bg-white/70 backdrop-blur supports-[backdrop-filter]:bg-white/60">
+    <header className="sticky top-0 z-40 border-b border-neutral-200 bg-stone-50/95">
       <Container>
-        <div className="flex items-center justify-between py-4">
+        <div className="flex items-center justify-between py-3">
           <a
             href="#top"
             aria-label={`${SITE.name} home`}
@@ -22,29 +22,29 @@ const Nav = () => {
               />
             </span>
           </a>
-          <nav className="hidden items-center gap-8 text-sm text-neutral-700 md:flex">
-            <a href="#about" className="hover:text-neutral-950">
+          <nav className="hidden items-center gap-7 text-sm font-medium text-neutral-700 md:flex">
+            <a href="#about" className="transition hover:text-brand-800">
               About
             </a>
-            <a href="#features" className="hover:text-neutral-950">
+            <a href="#features" className="transition hover:text-brand-800">
               What we do
             </a>
-            <a href="#pricing" className="hover:text-neutral-950">
+            <a href="#pricing" className="transition hover:text-brand-800">
               Pricing
             </a>
-            <a href="#contact" className="hover:text-neutral-950">
+            <a href="#contact" className="transition hover:text-brand-800">
               Contact
             </a>
             <a
               href="#contact"
-              className="rounded-xl bg-brand-600 px-4 py-2 text-white hover:bg-brand-700"
+              className="rounded-lg bg-brand-500 px-4 py-2 text-brand-950 shadow-sm transition hover:bg-brand-400"
             >
               {SITE.ctaPrimary}
             </a>
           </nav>
           <button
             onClick={() => setOpen(!open)}
-            className="rounded-lg border p-2 text-neutral-700 md:hidden"
+            className="rounded-lg border border-neutral-300 bg-white p-2 text-neutral-700 shadow-sm md:hidden"
             aria-label="Toggle menu"
           >
             <svg
@@ -61,27 +61,27 @@ const Nav = () => {
         {open && (
           <div className="pb-4 md:hidden">
             <div className="flex flex-col gap-2 text-sm">
-              <a
-                href="#features"
-                className="rounded-lg px-3 py-2 hover:bg-neutral-100"
-              >
+              <a href="#about" className="rounded-lg px-3 py-2 hover:bg-white">
+                About
+              </a>
+              <a href="#features" className="rounded-lg px-3 py-2 hover:bg-white">
                 What we do
               </a>
               <a
                 href="#pricing"
-                className="rounded-lg px-3 py-2 hover:bg-neutral-100"
+                className="rounded-lg px-3 py-2 hover:bg-white"
               >
                 Pricing
               </a>
               <a
                 href="#contact"
-                className="rounded-lg px-3 py-2 hover:bg-neutral-100"
+                className="rounded-lg px-3 py-2 hover:bg-white"
               >
                 Contact
               </a>
               <a
                 href="#contact"
-                className="rounded-lg bg-brand-600 px-3 py-2 text-white hover:bg-brand-700"
+                className="rounded-lg bg-brand-500 px-3 py-2 text-brand-950 hover:bg-brand-400"
               >
                 {SITE.ctaPrimary}
               </a>

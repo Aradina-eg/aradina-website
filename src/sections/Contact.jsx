@@ -71,44 +71,62 @@ const Contact = () => {
   };
 
   return (
-    <section id="contact" className="py-16 md:py-24">
+    <section id="contact" className="border-t border-neutral-200 bg-white py-16 md:py-24">
       <Container>
-        <div className="mx-auto max-w-2xl text-center">
-          <h2 className="text-3xl font-bold tracking-tight text-neutral-900 sm:text-4xl">
-            Get in touch
-          </h2>
-          <p className="mt-3 text-neutral-700">
-            Tell us about your farm and goals; let&apos;s plan a pilot.
-          </p>
-        </div>
-        <div className="mx-auto mt-10 max-w-xl">
-          <div className="rounded-2xl border border-neutral-200 bg-white p-6 shadow-sm">
-            <h3 className="text-lg font-semibold text-neutral-900">Message us</h3>
+        <div className="grid gap-10 lg:grid-cols-[0.85fr_1fr] lg:items-start">
+          <div>
+            <p className="text-sm font-semibold uppercase tracking-[0.16em] text-brand-700">
+              Contact
+            </p>
+            <h2 className="mt-3 text-3xl font-bold tracking-tight text-neutral-950 sm:text-4xl">
+              Plan a pilot around your fields.
+            </h2>
+            <p className="mt-4 text-base leading-7 text-neutral-700">
+              Share the crop, location, and deployment goal. The Aradina team
+              will help estimate the right sensor coverage and next steps.
+            </p>
+            <div className="mt-8 space-y-3 text-sm text-neutral-700">
+              <p>
+                <span className="font-semibold text-neutral-950">Email:</span>{" "}
+                {CONTACT.email}
+              </p>
+              <p>
+                <span className="font-semibold text-neutral-950">Phone:</span>{" "}
+                {CONTACT.phone}
+              </p>
+              <p>
+                <span className="font-semibold text-neutral-950">Base:</span>{" "}
+                {CONTACT.address}
+              </p>
+            </div>
+          </div>
+          <div className="border border-neutral-200 bg-stone-50 p-6 shadow-sm">
+            <h3 className="text-lg font-semibold text-neutral-950">Message us</h3>
             <form onSubmit={handleSubmit} className="mt-4 space-y-3 text-sm">
               <input
                 name="name"
                 required
                 placeholder="Your name"
-                className="w-full rounded-lg border border-neutral-300 px-3 py-2 outline-none focus:ring-2 focus:ring-brand-500"
+                className="w-full rounded-lg border border-neutral-300 bg-white px-3 py-2 outline-none focus:ring-2 focus:ring-brand-500"
               />
               <input
                 name="email"
                 type="email"
                 required
                 placeholder="Email"
-                className="w-full rounded-lg border border-neutral-300 px-3 py-2 outline-none focus:ring-2 focus:ring-brand-500"
+                className="w-full rounded-lg border border-neutral-300 bg-white px-3 py-2 outline-none focus:ring-2 focus:ring-brand-500"
               />
               <input
                 name="phone"
                 placeholder="Phone (optional)"
-                className="w-full rounded-lg border border-neutral-300 px-3 py-2 outline-none focus:ring-2 focus:ring-brand-500"
+                className="w-full rounded-lg border border-neutral-300 bg-white px-3 py-2 outline-none focus:ring-2 focus:ring-brand-500"
               />
               <select
                 name="reason"
                 required
                 value={reason}
                 onChange={handleReasonChange}
-                className="w-full rounded-lg border border-neutral-300 px-3 py-2 outline-none focus:ring-2 focus:ring-brand-500"
+                className="w-full rounded-lg border border-neutral-300 bg-white px-3 py-2 outline-none focus:ring-2 focus:ring-brand-500"
               >
                 <option value="" disabled>
                   Reason for reaching out
@@ -125,7 +143,7 @@ const Contact = () => {
                   required
                   value={selectedPackage}
                   onChange={(event) => setSelectedPackage(event.target.value)}
-                  className="w-full rounded-lg border border-neutral-300 px-3 py-2 outline-none focus:ring-2 focus:ring-brand-500"
+                  className="w-full rounded-lg border border-neutral-300 bg-white px-3 py-2 outline-none focus:ring-2 focus:ring-brand-500"
                 >
                   <option value="" disabled>
                     Select a package
@@ -142,11 +160,11 @@ const Contact = () => {
                 required
                 placeholder="Your message"
                 rows={5}
-                className="w-full rounded-lg border border-neutral-300 px-3 py-2 outline-none focus:ring-2 focus:ring-brand-500"
+                className="w-full rounded-lg border border-neutral-300 bg-white px-3 py-2 outline-none focus:ring-2 focus:ring-brand-500"
               />
               <button
                 type="submit"
-                className="w-full rounded-xl bg-brand-600 px-4 py-2 font-medium text-white shadow hover:bg-brand-700"
+                className="w-full rounded-lg bg-brand-500 px-4 py-2 font-medium text-brand-950 shadow-sm transition hover:bg-brand-400"
               >
                 Send via email
               </button>

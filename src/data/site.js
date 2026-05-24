@@ -1,8 +1,8 @@
 export const SITE = {
   name: "aradina",
-  tagline: "Smart irrigation made simple.",
+  tagline: "Know when every field needs water.",
   subTagline:
-    "Sensors, insights, and automation to save water, boost yield, and cut costs.",
+    "Aradina combines field sensors, irrigation insights, and deployment support for growers who need reliable decisions from real soil data.",
   ctaPrimary: "Book a demo",
 };
 
@@ -19,18 +19,18 @@ export const FEATURES = [
     specs: [
       {
         parameter: "Volumetric water content",
-        range: "0–100% VWC",
-        precision: "±2% after soil calibration",
+        range: "0-100% VWC",
+        precision: "+/-2% after soil calibration",
       },
       {
         parameter: "Soil temperature",
-        range: "-40°C to 80°C",
-        precision: "±0.5°C",
+        range: "-40C to 80C",
+        precision: "+/-0.5C",
       },
       {
         parameter: "Soil salinity (EC)",
-        range: "0–20000 uS/cm",
-        precision: "±3% of reading",
+        range: "0-20000 uS/cm",
+        precision: "+/-3% of reading",
       },
       {
         parameter: "Reporting cadence",
@@ -72,13 +72,29 @@ export const FEATURES = [
   },
 ];
 
+export const SENSOR_HARDWARE = [
+  {
+    name: "Fixed sensor",
+    description: "Installed in the field for continuous soil monitoring.",
+    price: 400,
+    imageSrc: "/images/sensor.png",
+    imageAlt: "Aradina fixed soil sensor hardware",
+  },
+  {
+    name: "Handheld sensor",
+    description: "Portable readings for spot checks and field visits.",
+    price: 600,
+    imageAlt: "Handheld sensor product image placeholder",
+  },
+];
+
 export const PRICING = [
   {
     name: "Starter",
     capability: "Insight",
     description:
       "Core field visibility with essential alerts and dashboards for trial deployments.",
-    monthlyRate: 13,
+    monthlyRate: 5,
     unitMonthly: "per month per device",
     unitYearly: "per year per device",
     highlight: false,

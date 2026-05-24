@@ -2,7 +2,7 @@ import IconCheck from "./icons/IconCheck.jsx";
 
 const PricingCard = ({ plan }) => (
   <div
-    className={`flex flex-col rounded-2xl border ${
+    className={`flex flex-col border ${
       plan.highlight
         ? "border-brand-300 bg-brand-50"
         : "border-neutral-200 bg-white"
@@ -10,7 +10,7 @@ const PricingCard = ({ plan }) => (
   >
     {plan.capability ? (
       <span
-        className={`text-xs font-semibold uppercase tracking-wide ${
+        className={`text-xs font-semibold uppercase tracking-[0.14em] ${
           plan.highlight ? "text-brand-700" : "text-brand-600"
         }`}
       >
@@ -23,7 +23,7 @@ const PricingCard = ({ plan }) => (
     {plan.description ? (
       <p className="mt-2 text-sm text-neutral-600">{plan.description}</p>
     ) : null}
-    <div className="mt-3 text-3xl font-extrabold text-neutral-900">
+    <div className="mt-4 text-3xl font-extrabold text-neutral-950">
       {plan.displayPrice}
     </div>
     {plan.displayUnit ? (
@@ -32,7 +32,7 @@ const PricingCard = ({ plan }) => (
       </div>
     ) : null}
     {plan.savingsNote ? (
-      <div className="mt-1 text-xs font-medium text-brand-700">
+      <div className="mt-2 rounded bg-brand-50 px-3 py-2 text-xs font-medium text-brand-800">
         {plan.savingsNote}
       </div>
     ) : null}
@@ -59,16 +59,16 @@ const PricingCard = ({ plan }) => (
               );
             }
           }}
-          className={`inline-flex w-full items-center justify-center rounded-xl px-4 py-2 font-medium shadow ${
+          className={`inline-flex w-full items-center justify-center rounded-lg px-4 py-2 font-medium shadow-sm transition ${
             plan.highlight
-              ? "bg-brand-600 text-white hover:bg-brand-700"
+              ? "bg-brand-500 text-brand-950 hover:bg-brand-400"
               : "border border-neutral-300 text-neutral-900 hover:bg-neutral-100"
           }`}
         >
           Choose {plan.name}
         </a>
       ) : (
-        <div className="flex w-full items-center justify-center rounded-xl border border-dashed border-amber-300 bg-amber-50 px-4 py-2 text-sm font-semibold uppercase tracking-wide text-amber-700">
+        <div className="flex w-full items-center justify-center rounded-lg border border-dashed border-amber-300 bg-amber-50 px-4 py-2 text-sm font-semibold uppercase tracking-wide text-amber-800">
           Coming soon
         </div>
       )}

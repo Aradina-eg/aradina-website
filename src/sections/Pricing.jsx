@@ -2,7 +2,7 @@ import { useState } from "react";
 import Container from "../components/Container.jsx";
 import PricingCard from "../components/PricingCard.jsx";
 import FieldPlannerModal from "../components/FieldPlannerModal.jsx";
-import { PRICING, SENSOR_PRICING } from "../data/site.js";
+import { PRICING, SENSOR_HARDWARE, SENSOR_PRICING } from "../data/site.js";
 
 const currencyFormatter = new Intl.NumberFormat("en-US", {
   style: "currency",
@@ -115,18 +115,56 @@ const Pricing = () => {
     <>
       <section
         id="pricing"
-        className="border-y border-neutral-200 bg-neutral-50 py-16 md:py-24"
+        className="bg-stone-50 py-16 md:py-24"
       >
         <Container>
           <div className="mx-auto mb-10 max-w-2xl text-center">
-            <h2 className="text-3xl font-bold tracking-tight text-neutral-900 sm:text-4xl">
+            <p className="text-sm font-semibold uppercase tracking-[0.16em] text-brand-700">
               Pricing
+            </p>
+            <h2 className="mt-3 text-3xl font-bold tracking-tight text-neutral-950 sm:text-4xl">
+              Plans that scale by device count.
             </h2>
             <p className="mt-3 text-neutral-700">
-              Simple plans that scale with your fields.
+              Enter a sensor count to see monthly or annual deployment costs.
             </p>
           </div>
-          <div className="mx-auto mb-12 flex flex-col items-center gap-4 text-center sm:flex-row sm:flex-wrap sm:justify-center sm:gap-6 sm:text-left">
+          <div className="mx-auto mb-10 grid max-w-4xl gap-4 md:grid-cols-2">
+            {SENSOR_HARDWARE.map((sensor) => (
+              <div
+                key={sensor.name}
+                className="grid gap-4 border border-neutral-200 bg-white p-4 shadow-sm sm:grid-cols-[9rem_1fr]"
+              >
+                {sensor.imageSrc ? (
+                  <img
+                    src={sensor.imageSrc}
+                    alt={sensor.imageAlt}
+                    className="aspect-[4/3] w-full rounded-lg border border-neutral-200 bg-stone-100 object-cover object-[center_35%]"
+                  />
+                ) : (
+                  <div
+                    className="flex aspect-[4/3] items-center justify-center rounded-lg border border-dashed border-neutral-300 bg-stone-100 px-4 text-center text-xs font-medium uppercase tracking-[0.12em] text-neutral-500"
+                    role="img"
+                    aria-label={sensor.imageAlt}
+                  >
+                    Image
+                  </div>
+                )}
+                <div className="flex flex-col justify-center">
+                  <h3 className="text-lg font-semibold text-neutral-950">
+                    {sensor.name}
+                  </h3>
+                  <p className="mt-2 text-sm leading-6 text-neutral-700">
+                    {sensor.description}
+                  </p>
+                  <p className="mt-4 text-2xl font-extrabold text-brand-900">
+                    {formatCurrency(sensor.price)}
+                  </p>
+                </div>
+              </div>
+            ))}
+          </div>
+          <div className="mx-auto mb-12 flex max-w-3xl flex-col items-center gap-4 border border-neutral-200 bg-white p-4 text-center shadow-sm sm:flex-row sm:flex-wrap sm:justify-center sm:gap-6 sm:text-left">
             <label className="flex flex-col items-center gap-2 text-sm font-medium text-neutral-700 sm:flex-row sm:items-center">
               <span>Sensors</span>
               <input
@@ -147,7 +185,7 @@ const Pricing = () => {
                     onClick={() => setBillingCycle(cycle)}
                     className={`flex-1 rounded-md px-3 py-2 text-sm font-medium transition ${
                       billingCycle === cycle
-                        ? "bg-white text-brand-600 shadow"
+                        ? "bg-white text-brand-800 shadow"
                         : "text-neutral-600 hover:text-neutral-800"
                     }`}
                   >
@@ -172,7 +210,7 @@ const Pricing = () => {
             <button
               type="button"
               onClick={() => setPlannerOpen(true)}
-              className="mt-3 inline-flex items-center justify-center rounded-lg bg-brand-600 px-4 py-2 text-sm font-medium text-white shadow-sm transition hover:bg-brand-700"
+              className="mt-3 inline-flex items-center justify-center rounded-lg bg-brand-500 px-4 py-2 text-sm font-medium text-brand-950 shadow-sm transition hover:bg-brand-400"
             >
               Field Sensor Estimator
             </button>
